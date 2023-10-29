@@ -1,6 +1,7 @@
 import { ProductProps } from '@/@types/product'
 import { api } from '@/data/api'
 import { cva } from '@/lib/cva.config'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { safeParse, string } from 'valibot'
@@ -17,13 +18,25 @@ type Props = {
 
 async function getProduct(slug: string) {
   try {
-    const response = await api(`/api/products/${slug}`)
+    const response = await api(`/api/products/${slug}`, {
+      next: {
+        revalidate: 5, // 1 hour
+      },
+    })
 
     const product = await response.json()
 
     return product as ProductProps
   } catch (error) {
     redirect('/')
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await getProduct(params.slug)
+
+  return {
+    title: product.title,
   }
 }
 

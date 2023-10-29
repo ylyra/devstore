@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { Skeleton } from './_components/skeleton'
 
 export default function ProductsLoading() {

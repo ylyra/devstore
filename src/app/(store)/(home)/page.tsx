@@ -1,6 +1,7 @@
 import { ProductProps } from '@/@types/product'
 import { api } from '@/data/api'
 import { cva } from '@/lib/cva.config'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -31,6 +32,10 @@ const product_title = cva({
 const product_price = cva({
   base: 'flex h-full items-center justify-center rounded-full bg-violet-500 px-4 font-semibold',
 })
+
+export const metadata: Metadata = {
+  title: 'home',
+}
 
 async function getFeaturedProducts() {
   const response = await api('/api/products/featured', {

@@ -9,6 +9,7 @@ type Props = {
 
 export async function GET(_: Request, { params }: Props) {
   try {
+    console.log('called it')
     const slug = parse(string(), params.slug)
 
     const product = data.products.find((product) => product.slug === slug)

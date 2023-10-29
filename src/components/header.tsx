@@ -8,7 +8,7 @@ export function Header() {
       <div className="flex flex-1 items-center gap-5">
         <Link
           href="/"
-          className="text-2xl font-extrabold text-white transition-colors duration-200 hover:text-white/60"
+          className="font-mono text-2xl font-extrabold text-white transition-colors duration-200 hover:text-white/60"
         >
           devstore
         </Link>

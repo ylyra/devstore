@@ -52,7 +52,7 @@ export default async function Home() {
       {products.map((product, idx) => (
         <Link
           key={product.id}
-          href={`/products/${product.id}`}
+          href={`/products/${product.slug}`}
           className={product_card({
             highlited: idx === 0,
           })}

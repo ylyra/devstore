@@ -20,7 +20,7 @@ async function getProduct(slug: string) {
   try {
     const response = await api(`/api/products/${slug}`, {
       next: {
-        revalidate: 5, // 1 hour
+        revalidate: 60 * 60, // 1 hour
       },
     })
 
@@ -39,6 +39,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: product.title,
   }
 }
+
+// export async function generateStaticParams() {
+//   return []
+// }
 
 export default async function Page({ params }: Props) {
   const slug = safeParse(string(), params.slug)

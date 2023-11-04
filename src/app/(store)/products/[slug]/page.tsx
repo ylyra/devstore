@@ -1,4 +1,5 @@
 import { ProductProps } from '@/@types/product'
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { api } from '@/data/api'
 import { cva } from '@/lib/cva.config'
 import { Metadata } from 'next'
@@ -104,12 +105,7 @@ export default async function Page({ params }: Props) {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white transition-colors duration-300 hover:bg-emerald-700"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productID={product.id} />
       </div>
     </div>
   )

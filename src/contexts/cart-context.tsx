@@ -1,5 +1,11 @@
 'use client'
-import { PropsWithChildren, createContext, useContext, useState } from 'react'
+import {
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from 'react'
 
 interface CartItem {
   productId: string
@@ -16,20 +22,22 @@ const CartContext = createContext({} as CartContextType)
 export function CartProvider({ children }: PropsWithChildren) {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
 
-  const addToCart = (productId: string) => {
+  const addToCart = useCallback((productId: string) => {
     setCartItems((items) => {
       const itemIndex = items.findIndex((item) => item.productId === productId)
 
       if (itemIndex >= 0) {
         const newItems = [...items]
-        newItems[itemIndex].quantity += 1
-
+        newItems[itemIndex] = {
+          ...newItems[itemIndex],
+          quantity: newItems[itemIndex].quantity + 1,
+        }
         return newItems
       }
 
       return [...items, { productId, quantity: 1 }]
     })
-  }
+  }, [])
 
   return (
     <CartContext.Provider

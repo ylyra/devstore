@@ -1,7 +1,7 @@
-import { Search } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { CartWidget } from './cart-widget'
+import { SearchForm } from './search-form'
 
 export function Header() {
   return (
@@ -14,14 +14,7 @@ export function Header() {
           devstore
         </Link>
 
-        <form className="flex w-full max-w-[320px] items-center gap-3 rounded-full bg-zinc-900 px-5 py-3 ring-zinc-700 transition-all duration-300 focus-within:ring">
-          <Search className="h-6 w-6 text-zinc-500" />
-
-          <input
-            placeholder="Buscar produtos flex-1"
-            className="flex-1 bg-transparent text-sm outline-none placeholder:text-zinc-500"
-          />
-        </form>
+        <SearchForm />
       </div>
 
       <div className="flex items-center gap-4">

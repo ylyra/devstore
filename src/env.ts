@@ -3,6 +3,7 @@ import { Output, flatten, object, safeParse, string, url } from 'valibot'
 
 const envSchema = object({
   NEXT_PUBLIC_API_BASE_URL: string([url('Invalid API base URL')]),
+  VERCEL_URL: string([url('Invalid Vercel URL')]),
 })
 
 const parsedEnv = safeParse(envSchema, process.env)

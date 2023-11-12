@@ -5,7 +5,7 @@ import { cva } from '@/lib/cva.config'
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
-import { safeParse, string } from 'valibot'
+import { z } from 'zod'
 
 const size_button = cva({
   base: 'flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold',
@@ -55,13 +55,13 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const slug = safeParse(string(), params.slug)
+  const slug = z.string().safeParse(params.slug)
 
   if (!slug.success) {
     redirect('/')
   }
 
-  const product = await getProduct(slug.output)
+  const product = await getProduct(slug.data)
   const product_price = product.price
   const product_installment_price = product_price / 12
 

@@ -13,18 +13,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-
-      - name: Install PNPM
+          
+      - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: false
-
+      
       - name: Get pnpm store directory
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-  
+
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -35,12 +35,12 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
-
+        
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        env: 
-          VERCEL_URL: "http://localhost:3000"
+        env:
           NEXT_PUBLIC_API_BASE_URL: "https://ignite-devstore-api-green.vercel.app"
+          VERCEL_URL: "http://localhost:3000"
         with:
-          build: npm run build
-          start: npm start
+          build: pnpm run build
+          start: pnpm start

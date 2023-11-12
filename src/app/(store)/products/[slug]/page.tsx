@@ -41,9 +41,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-// export async function generateStaticParams() {
-//   return []
-// }
+export async function generateStaticParams() {
+  try {
+    const response = await api('/products/featured')
+    const products = (await response.json()) as ProductProps[]
+
+    return products.map((product) => {
+      return { slug: product.slug }
+    })
+  } catch (error) {
+    return []
+  }
+}
 
 export default async function Page({ params }: Props) {
   const slug = safeParse(string(), params.slug)

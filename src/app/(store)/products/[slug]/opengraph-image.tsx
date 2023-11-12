@@ -25,7 +25,7 @@ async function getProduct(slug: string) {
 export const runtime = 'edge'
 
 // Image metadata
-export const alt = 'About Acme'
+export const alt = ''
 export const size = {
   width: 1200,
   height: 630,

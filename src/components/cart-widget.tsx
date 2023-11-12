@@ -5,7 +5,8 @@ import { ShoppingBag } from 'lucide-react'
 export function CartWidget() {
   const { items } = useCart()
 
-  const totalItems = items.reduce((acc, item) => acc + item.quantity, 0)
+  const totalItems = items.length
+  // const totalItems = items.reduce((acc, item) => acc + item.quantity, 0)
 
   return (
     <button className="flex items-center gap-2">

@@ -15,6 +15,6 @@ describe('search products', () => {
 
     cy.visit('/search')
 
-    cy.url().should('equal', '/')
+    cy.location('pathname').should('equal', '/')
   })
 })
